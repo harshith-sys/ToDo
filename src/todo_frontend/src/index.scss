@@ -1,37 +1,59 @@
-body {
+.App {
   font-family: sans-serif;
-  font-size: 1.5rem;
+  text-align: center;
 }
 
-img {
-  max-width: 50vw;
-  max-height: 25vw;
-  display: block;
+.to-do-list {
   margin: auto;
+  display: grid;
+  place-items: center;
 }
 
-form {
+button,
+.options {
+  background-color: rgb(98, 98, 240);
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin-left: 1rem;
+}
+
+input[type="text"] {
+  font-size: 1.6rem;
+  padding: 10px;
+  border: 2px solid hsla(0, 0%, 80%, 0.5);
+  border-radius: 5px;
+  color: hsla(0, 0%, 0%, 0.5);
+}
+
+ol {
+  padding: 0;
+  margin-right: 15rem;
+}
+
+li {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 15px;
+  background-color: hsl(0, 0%, 97%);
+  margin-bottom: 10px;
+  border: 3px solid hsla(0, 0%, 85%, 0.75);
+  border-radius: 5px;
   display: flex;
-  justify-content: center;
-  gap: 0.5em;
-  flex-flow: row wrap;
-  max-width: 40vw;
-  margin: auto;
-  align-items: baseline;
+  align-items: center;
 }
 
-button[type="submit"] {
-  padding: 5px 20px;
-  margin: 10px auto;
-  float: right;
+.text {
+  flex: 1;
 }
 
-#greeting {
-  margin: 10px auto;
-  padding: 10px 60px;
-  border: 1px solid #222;
-}
-
-#greeting:empty {
-  display: none;
+.delete-button {
+  padding: 8px 12px;
+  font-size: 1.4rem;
+  margin-left: 10px;
 }

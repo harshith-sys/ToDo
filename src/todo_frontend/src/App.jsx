@@ -1,30 +1,62 @@
-import { useState } from 'react';
-import { todo_backend } from 'declarations/todo_backend';
+import React, { useState } from "react";
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [tasks, setTask] = useState(['Hello there']);
+  const [newTask, setNewTasks] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    todo_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
+  function handleInputChange(event) {
+    setNewTasks(event.target.value);
+  }
+
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTask((t) => [...t, newTask]);
+      setNewTasks("");
+    }
+  }
+
+  function deleteTask(index) {
+    const updateTasks = tasks.filter((_, i) => i !== index);
+    setTask(updateTasks);
   }
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div className="to-do-list">
+      <h1>To-Do-List</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter a Tasks..."
+          value={newTask}
+          onChange={handleInputChange}
+        />
+        <button className="add-button" onClick={addTask}>
+          Add
+        </button>
+        <select className="options">
+          <option value="">All</option>
+          <option value="">Complete</option>
+          <option value="">Incomplete</option>
+        </select>
+      </div>
+      {tasks.length > 0 ? (
+        <ol>
+          {tasks.map((task, index) => (
+            <li key={index}>
+              <span className="text">{task} </span>
+              <button
+                className="delete-button"
+                onClick={() => deleteTask(index)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <img src="https://to-do-theta-taupe.vercel.app/find.svg" alt="img" />
+      )}
+    </div>
   );
 }
 
